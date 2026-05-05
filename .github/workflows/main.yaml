@@ -16,3 +16,10 @@ jobs:
         uses: actions/Checkout@v4
       - name: NodeJS Setup
         uses: actions/setup-node@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::494492165492:role/github-action-role
+          aws-region: ap-south-1
+      - name: Test
+        run: aws sts get-caller-identity
